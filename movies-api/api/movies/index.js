@@ -18,4 +18,18 @@ router.get('/:id', (req, res) => {
      res.status(404).send({message: `Unable to find movie with id: ${key}.`, status: 404});
      }
   });
+  router.post('/', (req, res) => {
+    let newMovie = req.body;
+    if (newMovie && newMovie.title) {
+      //Adds a random id if missing. 
+      !newMovie.id ? newMovie.id = Math.round(Math.random() * 10000) : newMovie 
+      moviesObject.movies.push(newMovie);
+      res.status(201).send(newMovie);
+    } else {
+      res.status(405).send({
+        message: "Invalid Movie Data",
+        status: 405
+      });
+    }
+  });
 export default router;
