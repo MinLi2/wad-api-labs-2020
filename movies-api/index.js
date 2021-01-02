@@ -3,6 +3,7 @@ import express from 'express';
 import moviesRouter from './api/movies';
 import usersRouter from './api/users';
 import bodyParser from 'body-parser';
+import genresRouter from './api/genres'
 import './db';
 import {loadUsers} from './seedData';
 
@@ -27,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use('/api/movies', moviesRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/genres', genresRouter)
 app.use(errHandler);
 
 app.listen(port, () => {
